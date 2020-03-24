@@ -1,6 +1,11 @@
 const { GraphQLServer } = require("graphql-yoga");
 const { prisma } = require('./generated/prisma-client')
 
+const Query = require('./resolvers/Query')
+const Mutation = require('./resolvers/Mutation')
+const User = require('./resolvers/User')
+const Link = require('./resolvers/Link')
+
 // create type definations
 // const typeDefs = `
 // type Query {
@@ -31,37 +36,41 @@ let idCount = links.length
 
 // create simple resolver;
 const resolvers = {
-  Query: {
-    info: () => `Query resolved`,
-    feed: (root, args, { prisma }, info) => {
-      console.log('--info-->', info)
-      return prisma.links();
-    },
-    // feed: () => links,
-    link: (_, args) => {
-      const a = links.filter(data => data.id === args.id)
-      return a[0];
-    }
-  },
-  Mutation: {
-    post: (parent, args) => {
-      const link = {
-        id: `link-${idCount++}`,
-        description: args.description,
-        url: args.url,
-      }
-      links.push(link)
-      return link
-    },
-    createLink: async (parent, args, { prisma }, info) => {
-      const saveLink = await prisma.createLink({
-        id: `link-${idCount++}`,
-        description: args.data.description,
-        url: args.data.url,
-      });
-      return saveLink;
-    }
-  }
+  Query,
+  Mutation,
+  User,
+  Link
+  // Query: {
+  //   info: () => `Query resolved`,
+  //   feed: (root, args, { prisma }, info) => {
+  //     console.log('--info-->', info)
+  //     return prisma.links();
+  //   },
+  //   // feed: () => links,
+  //   link: (_, args) => {
+  //     const a = links.filter(data => data.id === args.id)
+  //     return a[0];
+  //   }
+  // },
+  // Mutation: {
+  //   post: (parent, args) => {
+  //     const link = {
+  //       id: `link-${idCount++}`,
+  //       description: args.description,
+  //       url: args.url,
+  //     }
+  //     links.push(link)
+  //     return link
+  //   },
+  //   createLink: async (parent, args, { prisma }, info) => {
+  //     const saveLink = await prisma.createLink({
+  //       id: `link-${idCount++}`,
+  //       description: args.data.description,
+  //       url: args.data.url,
+  //     });
+  //     return saveLink;
+  //   },
+  // }
 }
 
 // create the graphql server

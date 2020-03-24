@@ -1,0 +1,18 @@
+{
+  "name": "hackernews-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node 'dist/server.js'",
+    "test": "jest --coverage ",
+    "build": "tsc -p . && ncp src/ dist/src",
+    "start:dev": "npm run build:dev",
+    "build:dev": "nodemon 'src/index.js'"
+  },
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "nodemon": "^2.0.2",
+    "prisma-client-lib": "^1.34.10"
+  }
+}

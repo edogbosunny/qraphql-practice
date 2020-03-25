@@ -5,6 +5,7 @@ const Query = require('./resolvers/Query')
 const Mutation = require('./resolvers/Mutation')
 const User = require('./resolvers/User')
 const Link = require('./resolvers/Link')
+const Subscription = require('./resolvers/Subscription')
 
 // create type definations
 // const typeDefs = `
@@ -39,7 +40,8 @@ const resolvers = {
   Query,
   Mutation,
   User,
-  Link
+  Link,
+  Subscription
   // Query: {
   //   info: () => `Query resolved`,
   //   feed: (root, args, { prisma }, info) => {

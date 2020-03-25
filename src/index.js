@@ -6,6 +6,7 @@ const Mutation = require('./resolvers/Mutation')
 const User = require('./resolvers/User')
 const Link = require('./resolvers/Link')
 const Subscription = require('./resolvers/Subscription')
+const Vote = require('./resolvers/Vote')
 
 // create type definations
 // const typeDefs = `
@@ -41,6 +42,7 @@ const resolvers = {
   Mutation,
   User,
   Link,
+  Vote,
   Subscription
   // Query: {
   //   info: () => `Query resolved`,
